@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col">
                 <label class="form-label">Number-1</label>
-                <input type="text" onkeydown="resetAnswer()" id="input1" class="form-control"
+                <input type="text" onkeyup="resetAnswer()" id="input1" class="form-control"
                     placeholder="Enter first number">
             </div>
             <div class="col">
@@ -32,14 +32,15 @@
                 </select>
             </div>
             <div class="col">
-                <label for="inpu2" class="form-label">Number-2</label>
-                <input type="text" id="input2" class="form-control" placeholder="Enter second number">
+                <label for="input2" class="form-label">Number-2</label>
+                <input type="text" id="input2" onkeyup="resetAnswer()" class="form-control"
+                    placeholder="Enter second number">
             </div>
         </div>
         <div class="row">
             <div class="col mt-3 mb-1">
-                <input type="button" onclick="calc()" style="background-color: rgb(59, 59, 158); color: white;"
-                    value="SUBMIT" class="form-control">
+                <input type="button" id="button" onclick="calc()" value="SUBMIT" class="btn btn-primary d-block w-100"
+                    disabled>
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-4">
@@ -52,6 +53,7 @@
             let number1 = document.querySelector('#input1');
             let number2 = document.querySelector('#input2');
             let result = document.querySelector('#result');
+            let button = document.querySelector('#button');
             const selectbox = document.querySelector('#operation')
 
             let answer;
@@ -59,7 +61,6 @@
             function calc() {
                 const val1 = number1.value;
                 const val2 = number2.value;
-                if (val1 == '' || val2 == '') return;
                 if (selectbox.value == '+') {
                     answer = parseFloat(val1) + parseFloat(val2);
                 }
@@ -76,7 +77,14 @@
                 result.value = answer;
             }
             function resetAnswer() {
-                result.value = ''
+                result.value = '';
+                if (number1.value == '' || number2.value == '') {
+                    button.disabled = true;
+                }
+                else {
+                    button.disabled = false;
+                }
+
             }
 
         </script>
