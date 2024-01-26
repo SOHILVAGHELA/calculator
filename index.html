@@ -59,7 +59,7 @@
             function calc() {
                 const val1 = number1.value;
                 const val2 = number2.value;
-                if (val1 == '' && val2 == '') return;
+                if (val1 == '' || val2 == '') return;
                 if (selectbox.value == '+') {
                     answer = parseFloat(val1) + parseFloat(val2);
                 }
